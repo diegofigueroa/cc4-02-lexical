@@ -40,22 +40,137 @@
       
       <slide>
 	<hgroup>
-	  <h2>Slide with Bullets</h2>
+	  <h2>Análisis Léxico</h2>
 	</hgroup>
 	<article>
 	  <ul>
-	    <li>Titles are formatted as Open Sans with bold applied and font size is set at 45</li>
-	    <li>Title capitalization is title case
-	      <ul>
-		<li>Subtitle capitalization is title case</li>
-	      </ul>
-	    </li>
-	    <li>Subtitle capitalization is title case</li>
-	    <li>Titles and subtitles should never have a period at the end</li>
+	    <li>Primera fase de un compilador.</li>
+	    <li>Su tarea principal es generar un listado de tokens a partir de una cadena de caracteres (text).</li>
+	    <li>Estos tokens son luego utilizados por el parser.</li>
+	    <li>Además es posible que descarte ciertas cosas, como espacios o comentarios.</li>
+	    <li>Y posiblemente, cierta detección/corrección de errores.</li>
 	  </ul>
 	</article>
       </slide>
 
+      <slide class="fill nobackground" style="background-image: url(images/lexer.png)">
+	<hgroup>
+	  <h2>Análisis Léxico</h2>
+	</hgroup>
+      </slide>
+      
+      
+      <slide>
+	<hgroup>
+	  <h2>Análisis Léxico</h2>
+	  <h3>Metas</h3>
+	</hgroup>
+	<article>
+	  <ul>
+	    <li>Simplicidad:
+	      <ul>
+		<li>Facilitar la tarea del parser.</li>
+		<li>Clasificación de tokens.</li>
+		<li>Eliminar caracteres especiales, o peculiariadades de codificación.</li>
+	      </ul>
+	    </li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Análisis Léxico</h2>
+	  <h3>Tokens</h3>
+	</hgroup>
+	<article>
+	  <ul>
+	    <li><b>Operadores</b>: +, =, -, *, /.</li>
+	    <li><b>Keywords</b>: begin, end, class, for, while.</li>
+	    <li><b>Identificadores</b>: foo, bar, fooBar, xoom</li>
+	    <li><b>Literales numéricas</b>: 10, 1, 25, 5000.</li>
+	    <li><b>Literales string</b>: 'foo', 'hola mundo'.</li>
+	    <li><b>Literales booleanas</b>: true, false.</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Análisis Léxico</h2>
+	  <h3>Tokens</h3>
+	</hgroup>
+	<article>
+	  <ul>
+	    <li>El analizador léxico divide el texto de entrada según una serie de reglas, o patrones.</li>
+	    <li>A cada segmento resultante se le llama lexema.</li>
+	    <li>Cada lexema tiene un rol asociado, según su función (operador, número, identificador, etc.)</li>
+	    <li>Un token es un par: (<b>lexema</b>, <b>rol</b>).</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Table Option A (Smaller Text)</h2>
+	  <h3>Subtitle Placeholder</h3>
+	</hgroup>
+	<article>
+	  <table>
+	    <tr>
+	      <th>Lexema</th><th>Rol</th>
+	    </tr>
+	    <tr>
+	      <td>foo</td><td>identificador</td>
+	    </tr>
+	    <tr>
+	      <td>begin</td><td>keyword</td>
+	    </tr>
+	    <tr>
+	      <td>23456</td><td>número</td>
+	    </tr>
+	    <tr>
+	      <td>"hola"</td><td>string</td>
+	    </tr>
+	    <tr>
+	      <td>(</td><td>paréntesis izq.</td>
+	    </tr>
+	  </table>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Análisis Léxico</h2>
+	  <h3>Tokens</h3>
+	</hgroup>
+	<article>
+	  <ul>
+	    <li>Qué es un token y qué no lo es depende completamente del lenguaje.</li>
+	    <li>Algunos lenguajes restringen el uso de los keywords, de forma que no se usen como identificadores, otros lenguajes no.</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Análisis Léxico</h2>
+	  <h3>Tokens</h3>
+	</hgroup>
+	<article>
+	  <p>¿Cómo podemos <b>describir</b> un token?</p>
+	</article>
+      </slide>
+      
+      <slide class="segue dark quote nobackground">
+	<article class="flexbox vleft auto-fadein">
+	  <q>
+	    Un identificador es una secuencia (no vacía) de letras y números, que no empieza con un número.
+	  </q>
+	</article>
+      </slide>
+      
+      
       
 
       <slide class="logoslide dark nobackground">

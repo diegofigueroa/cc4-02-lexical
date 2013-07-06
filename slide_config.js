@@ -1,7 +1,7 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: 'Title Goes Here<br>Up To Two Lines',
+    title: 'Análisis Léxico',
     subtitle: 'Ciencias de la Computaci&oacute;n IV',
     eventTitle: '2013',
     useBuilds: true, // Default: true. False will turn off slide animation builds.
