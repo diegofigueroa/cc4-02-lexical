@@ -147,7 +147,7 @@
 	<article>
 	  <ul>
 	    <li>Qué es un token y qué no lo es depende completamente del lenguaje.</li>
-	    <li>Algunos lenguajes restringen el uso de los keywords, de forma que no se usen como identificadores, otros lenguajes no.</li>
+	    <li>Ejemplo: Algunos lenguajes restringen el uso de los keywords, de forma que no se usen como identificadores, otros lenguajes no.</li>
 	  </ul>
 	</article>
       </slide>
@@ -170,14 +170,187 @@
 	</article>
       </slide>
       
+      <slide>
+	<hgroup>
+	  <h2>Análisis Léxico</h2>
+	  <h3>Tokens</h3>
+	</hgroup>
+	<article>
+	  <p>Necesitamos un mecanismo más preciso para esto. ¿Alguna idea?</p>
+	  <div class="centered">
+	    <img src="images/homer-think.png" height="350px">
+	  </div>
+	</article>
+      </slide>
+      
+      <slide class="segue dark nobackground">
+	<aside class="gdbar"><img src="images/ug_128.png"></aside>
+	<hgroup class="auto-fadein">
+	  <h2>Expresiones Regulares</h2>
+	  <h3>Análisis Léxico</h3>
+	</hgroup>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Expresiones Regulares</h2>
+	</hgroup>
+	<article>
+	  <p>Una expresión regular consiste en un conjunto de <b>constantes</b> y <b>operadores</b> que definen un set de strings.</p>
+	  <ul>
+	    <li>La expresión regular <b>ε</b> define el conjunto de strings que sólo contiene al string vacío: <b>{""}</b></li><br/>
+	    <li>La expresión regular <b>'a'</b> define el conjunto de strings (a.k.a lenguaje) que sólo contiene al string "a": <b>{"a"}</b></li><br/>
+	    <li>Para cada caracter <b>x</b> de un alfabeto <b>Σ</b>, la expresión regular <b>x</b> define el lenguaje <b>{x}</b>.</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Expresiones Regulares</h2>
+	  <h3>Operaciones</h3>
+	</hgroup>
+	<article>
+	  <ul>
+	    <li>Unión: <b>a | b</b> denota <b>{a, b}</b>.</li>
+	    <li>Concatenación: <b>ab</b> denota <b>{ab}</b>.</li>
+	    <li>Iteración: <b>a*</b> denota <b>{"", "a", "aa", "aaa"...}</b>.</li>
+	    <li>Además:
+	      <ul>
+		<li><b>a+</b> denota <b>{"a", "aa", "aaa"...}</b>.</li>
+		<li><b>a?</b> denota <b>{"", "a"}</b>.</li>
+		<li><b>a|b|c</b> es equivalente a <b>[abc]</b>.</li>
+		<li><b>a|b|..|y|z</b> es equivalente a <b>[a-z]</b>.</li>
+	      </ul>
+	    </li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Expresiones Regulares</h2>
+	  <h3>Precedencia</h3>
+	</hgroup>
+	<article>
+	  <p>La <b>concatenación</b> tiene precendencia sobre la <b>unión</b>, por lo que las siguientes son equivalentes:</p>
+	  <ul>
+	    <li>(ab)|c</li>
+	    <li>ab|c</li>
+	  </ul>
+	  <p>La <b>iteración</b> tiene precendencia sobre la <b>concatenación</b>, por lo que las siguientes son equivalentes:</p>
+	  <ul>
+	    <li>a(b*)</li>
+	    <li>ab*</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Expresiones Regulares</h2>
+	  <h3>Ejemplos</h3>
+	</hgroup>
+	<article>
+	  <ul class="build">
+	    <li>(0|1)*0
+	      <ul class="build">
+		<li>Números binarios pares.</li>
+	      </ul>
+	    </li>
+	    <li>(0|1|2|3|4|5|6|7|8|9)
+	      <ul class="build">
+		<li><i>digit</i>: Un dígito.</li>
+	      </ul>
+	    </li>
+	    <li><b>digit</b>(<b>digit</b>*)
+	      <ul class="build">
+		<li><i>posint</i>: Números enteros positivos.</li>
+	      </ul>
+	    </li>
+	    <li>-?<b>posint</b>
+	      <ul class="build">
+		<li><i>int</i>: Números enteros.</li>
+	      </ul>
+	    </li>
+	    <li><b>int</b>(“.”<b>posint</b>)?
+	      <ul class="build">
+		<li>Números reales.</li>
+	      </ul>
+	    </li>
+	  </ul>
+	</article>
+      </slide>
+      
+       <slide>
+	<hgroup>
+	  <h2>Expresiones Regulares</h2>
+	  <h3>Más ejemplos</h3>
+	</hgroup>
+	<article>
+	  <ul class="build">
+	    <li>if
+	      <ul class="build">
+		<li>Keyword <b>if</b>.</li>
+	      </ul>
+	    </li>
+	    <li>[a-zA-Z][a-zA-Z0-9]*
+	      <ul class="build">
+		<li>Identificadores</li>
+	      </ul>
+	    </li><br/>
+	    <li>¿Qué pasa con el string "if4" ?
+	      <ul class="build">
+		<li>Ambas regex hacen match. ¿Cuál escogemos?</li>
+	      </ul>
+	    </li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Expresiones Regulares</h2>
+	  <h3>Reglas de desambiguación</h3>
+	</hgroup>
+	<article>
+	  <ul class="build">
+	    <li>Longest match:
+	      <ul class="build">
+		<li>El token a ser reconocido por una expresión regular será siempre el substring más largo que se puede construir con esa expresión.</li>
+	      </ul>
+	    </li><br/>
+	    <li>Prioridad:
+	      <ul class="build">
+		<li>Para un mismo match, la primera expresión regular que genere ese token es la se utiliza. Es decir, el orden en cómo se definen las expresiones regulares tiene importancia.</li>
+	      </ul>
+	    </li>
+	  </ul>
+	</article>
+      </slide>
       
       
-
+      <slide>
+	<hgroup>
+	  <h2>Expresiones Regulares</h2>
+	  <h3>Lenguajes</h3>
+	</hgroup>
+	<article>
+	  <p>Al conjunto de strings reconocido por una expresión regular se le denomina <b>Lenguaje Regular</b>.</p>
+	  <p>No todos los lenguajes pueden ser reconocidos por expresiones regulares, a estos se les conoce como <b>Lenguajes no regulares</b>.</p>
+	  <p>Ejemplo:
+	    <ul>
+	      <li><pre>a^n b a^n</pre></li>
+	    </ul>
+	  </p>
+	</article>
+      </slide>
+      
       <slide class="logoslide dark nobackground">
       </slide>
-
+      
       <slide class="backdrop"></slide>
-
+      
     </slides>
     <!--[if IE]>
       <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
