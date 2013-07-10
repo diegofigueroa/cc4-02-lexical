@@ -336,14 +336,195 @@
 	  <h3>Lenguajes</h3>
 	</hgroup>
 	<article>
-	  <p>Al conjunto de strings reconocido por una expresión regular se le denomina <b>Lenguaje Regular</b>.</p>
-	  <p>No todos los lenguajes pueden ser reconocidos por expresiones regulares, a estos se les conoce como <b>Lenguajes no regulares</b>.</p>
+	  <p>Al conjunto de strings descrito por una expresión regular se le denomina <b>Lenguaje Regular</b>.</p>
+	  <p>No todos los lenguajes pueden ser descritos por expresiones regulares, a estos se les conoce como <b>Lenguajes no regulares</b>.</p>
 	  <p>Ejemplo:
 	    <ul>
 	      <li><pre>a^n b a^n</pre></li>
 	    </ul>
 	  </p>
 	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Expresiones Regulares</h2>
+	  <h3>Lenguajes</h3>
+	</hgroup>
+	<article>
+	  <ul class="build">
+	    <li>Las expresiones regulares nos permiten describir lenguajes de forma precisa.</li>
+	    <li>¿Cómo podemos afirmar si un string pertence o no a un lenguaje?.</li>
+	    <li>Para esto utilizamos Autómata Finitos.</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide class="segue dark nobackground">
+	<aside class="gdbar"><img src="images/ug_128.png"></aside>
+	<hgroup class="auto-fadein">
+	  <h2>Autómata Finitos</h2>
+	  <h3>Análisis Léxico</h3>
+	</hgroup>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómata Finitos</h2>
+	</hgroup>
+	<article>
+	  <p>Un autómaton finito definido en base a:</p>
+	  <ul class="build">
+	    <li>Un alfabeto &Sigma;</li>
+	    <li>Un conjunto finito de estados <b>S</b>.</li>
+	    <li>Un conjunto de aristas que llevan de un estado a otro.</li>
+	    <li>Un estado incial <b>S0</b>.</li>
+	    <li>Un conjunto de estados finales (contenido en <b>S</b>).</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómaton Finito</h2>
+	</hgroup>
+	<article class="flexbox vcenter">
+	  <img src="images/automaton.png" alt="Automaton Finito" title="Automaton Finito">
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómata Finitos</h2>
+	</hgroup>
+	<article>
+	  <ul class="build">
+	    <li>Se dice que un autómaton <b>acepta</b> un string <b>s</b> únicamente si existe al menos una ruta desde el estado inicial que termine en un estado final tal que consuma todos los símbolos de <b>s</b>.</li><br/>
+	    <li>El lenguaje reconocido por un autómaton es el conjunto de todos los strings aceptados por ese autómaton.</li><br/>
+	    <li>Podemos clasificarlos en 2 tipos:
+	      <ul>
+		<li>Autómata Finitos Determinísticos (DFA)</li>
+		<li>Autómata Finitos No Determinísticos (NDFA)</li>
+	      </ul>
+	    </li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómata Finitos</h2>
+	  <h3>Determinísticos</h3>
+	</hgroup>
+	<article>
+	  <ul class="build">
+	    <li>Todas las aristas consumen un símbolo del string de entrada.</li><br/>
+	    <li>Para cada estado <b>s</b> y símbolo de entrada <b>a</b> existe <b>no más de una arista</b> etiquetada con ese símbolo.</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómata Finitos</h2>
+	  <h3>No Determinísticos</h3>
+	</hgroup>
+	<article>
+	  <ul class="build">
+	    <li>Presentan aristas que no consumen ningún símbolo del string de entrada (&epsilon;).</li><br/>
+	    <li>O tienen al menos un estado con múltiples aristas etiquetadas con el mísmo símbolo.</li><br/>
+	    <li class="red"><b>Esto significa que un NDFA debe tomar decisiones en cierto momento, para saber qué arista tomar.</b></li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómaton Finito</h2>
+	  <h3>No Determinístico</h3>
+	</hgroup>
+	<article class="flexbox vcenter">
+	  <img src="images/ndfa.png" alt="Automaton Finito" title="Autómaton Finito No Determinístico">
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómaton Finito</h2>
+	  <h3>No Determinístico</h3>
+	</hgroup>
+	<article class="flexbox vcenter">
+	  <img src="images/ndfa2.png" alt="Automaton Finito" title="Autómaton Finito No Determinístico">
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómaton Finito</h2>
+	  <h3>DFA vs NDFA</h3>
+	</hgroup>
+	<article>
+	  <ul class="build">
+	    <li>DFA sólo puede tomar una ruta dado un estado y un símbolo.</li>
+	    <li>NDFA puede escoger entre varias rutas.</li><br/>
+	    <li>DFA suelen ser más rápidos en su ejecución al no necesitar decisiones.</li>
+	    <li>NDFA suelen ser más pequeños (en cantidad de estados).</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómaton Finito</h2>
+	</hgroup>
+	<article>
+	  <ul class="build">
+	    <li>En la práctica, son equivalentes a las expresiones regulares.</li><br/>
+	    <li>Tanto NDFA como DFA reconocen Lenguajes Regulares.</li><br/>
+	    <li>DFA suelen ser más rápidos en su ejecución.</li>
+	  </ul>
+	</article>
+      </slide>
+      
+      <slide>
+	<hgroup>
+	  <h2>Autómaton Finito</h2>
+	  <h3>No Determinístico</h3>
+	</hgroup>
+	<article class="flexbox vcenter">
+	  <img src="images/er-ndfa-1.png" alt="Automaton Finito" title="Autómaton Finito No Determinístico">
+	</article>
+      </slide>
+      
+      <slide class="fill nobackground" style="background-image: url(images/er-ndfa-1.png)">
+	<hgroup>
+	  <h2 class="white">Autómaton Finito</h2>
+	  <h3 class="white">Construcción a partir de Expresiones Regulares</h3>
+	</hgroup>
+      </slide>
+      
+      <slide class="fill nobackground" style="background-image: url(images/er-ndfa-2.png)">
+	<hgroup>
+	  <h2 class="white">Concatenación</h2>
+	</hgroup>
+      </slide>
+      
+      <slide class="fill nobackground" style="background-image: url(images/er-ndfa-3.png)">
+	<hgroup>
+	  <h2 class="white">Concatenación</h2>
+	</hgroup>
+      </slide>
+      
+      <slide class="fill nobackground" style="background-image: url(images/er-ndfa-4.png)">
+	<hgroup>
+	  <h2 class="white">Unión</h2>
+	</hgroup>
+      </slide>
+      
+      <slide class="fill nobackground" style="background-image: url(images/er-ndfa-5.png)">
+	<hgroup>
+	  <h2 class="white">Iteración</h2>
+	</hgroup>
       </slide>
       
       <slide class="logoslide dark nobackground">
